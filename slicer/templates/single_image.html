@@ -1,0 +1,17 @@
+<div class="col s12">
+    <div class ="slider">
+        <ul class="slides">
+            {% for post in posts %}
+            <img src="{{post.cover.url}}">
+            <div class="caption right align">
+
+            </div>
+            {% else %}
+            <img src="{% static 'imgages/post-header.jpg'%}">
+            {% endif %}
+            <a href="{{ post.get_absolute_url}}"></a>
+        </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
