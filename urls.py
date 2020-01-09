@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
-from slicer.views import image_series_list
-# from slicer.veiws import single_image
-
+from django.conf import settings # new
+from django.urls import path, include # new
+from django.conf.urls.static import static # new
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', image_series_list),
-    # url(r'^images/', single_image.html),
+    path('', include('slicer.urls')),
 ]
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

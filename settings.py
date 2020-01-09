@@ -29,9 +29,9 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# Create a path to templates
 INSTALLED_APPS = [
-    'slicer',
+    'slicer.apps.SlicerConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -105,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -118,6 +117,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'media/'
 
-MEDIA_ROOT = 'media/'
+# MEDIA_ROOT = 'media/'
+# server path to store files in the computer.
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+# reference URL for browser to access the files over Http
+MEDIA_URL = '/media/'
+
+#added for a navigation requests
+TEMPLATE_CONTEXT_PROCESSORS = 'django.core.context_processors.request'
