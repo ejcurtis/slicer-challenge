@@ -9,7 +9,9 @@ def image_series_list(request):
         # third oprional context argument to pass information into template
         'all_image_series': ImageSeries.objects.all(),
     })
-def image_slider(request, series_uid):
+def image_slider(request, id):
+    image_series = ImageSeries.objects.get(id=id)
+    series_uid = image_series.series_uid
     # get the series uid that matches the chosen image series
     return render(request, 'slicer/image_slider.html', 
     {
