@@ -127,3 +127,5 @@ MEDIA_URL = '/media/'
 
 #added for a navigation requests
 TEMPLATE_CONTEXT_PROCESSORS = 'django.core.context_processors.request'
+
+#test environment variable

@@ -1,15 +1,18 @@
 {% extends "slicer/base.html" %}
 
 {% block "content" %}
-<h1>All Image Series</h1>
-<table>
+<div id='image_series_header_container'>
+  <img src='../../../media/static/download.png'>
+  <h1 id="image_series_header">Choose Patient File</h1>
+</div>
+<table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th>Patient ID</th>
-      <th>Study UID</th>
-      <th>Series UID</th>
-      <th>Dimensions</th>
-      <th>Actions</th>
+      <th scope="col" >Patient ID</th>
+      <th scope="col">Study UID</th>
+      <th scope="col">Series UID</th>
+      <th scope="col">Dimensions</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -20,9 +23,9 @@
       <td>{{ series.study_uid }}</td>
       <td>{{ series.series_uid }}</td>
       <td>{{ series.voxels.shape }}</td>
-      <td>{{ series.}}</td>
       <!-- TODO: make these links point somewhere -->
-      <td><a href="{% url 'image_slider' series.id %}">View</a></td>  
+      <!-- this points to a dynamic url '/series.id' -->
+      <td><a href="{% url 'image_slider' series.id %}" style='color: white'>View</a></td>  
     </tr>
     {% endfor %}
   </tbody>

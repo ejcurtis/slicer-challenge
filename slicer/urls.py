@@ -8,8 +8,6 @@ from . import views
 urlpatterns = [
     #url to "home" page
     path('', views.image_series_list, name='image_series_list'),
-    #url to series slider page usng the series uid as the identifier
-    #if I had more time I might figure out how to target a series without 
-    #having to have the id in the RL for security purposes
+    #url to series slider page usng the PK as the identifier
     path('<id>', views.image_slider, name='image_slider'),
 ]

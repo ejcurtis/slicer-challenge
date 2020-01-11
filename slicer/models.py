@@ -54,9 +54,9 @@ class ImageSeries(models.Model):
     def save(self, *args, **kwargs):
         with zipfile.ZipFile(self.dicom_archive, 'r') as f:
             print(f.extractall('media/dicom'))
-            #Extract all files from the dicom archive zip file that 
+            # Extract all files from the dicom archive zip file that 
             # is uploaded on the admin page in a "read only" format
-            # and save each of the extracted dcm files in media/dicom --> DICOM pics
+            # and save each of the extracted dcm file in media/dicom --> DICOM pics
             dicom_datasets = dicom_datasets_from_zip(f)
             # dicom_datasets variable is now equal to the read files 
             # imported from the dicom import in the slicer project in Django
@@ -76,14 +76,14 @@ class ImageSeries(models.Model):
         self.series_uid = dicom_datasets[0].SeriesInstanceUID
         # sets the value of each property on the instance
         source_folder = r'media/dicom/DICOM pics'
-        #folder of files to be converted into a png
+        # folder of files to be converted into a png
         output_folder = f'media/{self.series_uid}'
-        #folder where the png files will be saved. They will each have the series id as their
-        #name so each series is saves together and can be queried for the same slider
+        # folder where the png files will be saved. They will each have the series id as their
+        # name so each series is saved together and can be queried for the same slider
         os.mkdir(output_folder)
-        #Make the output folder for the files to be saved to
+        # Make the output folder for the files to be saved to
         super(ImageSeries, self).save(*args, **kwargs)
-        #dump the png files in the output folder
+        # dump the png files in the output folder
         dicomTopng(source_folder, output_folder)
     class Meta:
         verbose_name_plural = 'Image Series'

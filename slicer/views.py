@@ -11,14 +11,17 @@ def image_series_list(request):
     })
 def image_slider(request, id):
     image_series = ImageSeries.objects.get(id=id)
+    # gets the image series or sends a 404 error message if not available
     series_uid = image_series.series_uid
     # get the series uid that matches the chosen image series
     return render(request, 'slicer/image_slider.html', 
     {
-        #used to iterate through the remaining images
+        'image_series': image_series,
+        'image_series_properties': dir(image_series),
+        # used to iterate through the remaining images
         'all_png_files': np.asarray(os.listdir(f'media/{series_uid}')),
-        #used for first active slider image
+        # used for first active slider image
         'first_png': np.asarray(os.listdir(f'media/{series_uid}'))[0],
-        #used to display the name of the current set of images
+        # used to display the name of the current set of images
         'png_folder': series_uid
     })
