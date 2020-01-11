@@ -10,8 +10,6 @@ def image_series_list(request):
         'all_image_series': ImageSeries.objects.all(),
     })
 def image_slider(request, id):
-    print(request)
-    print(id)
     image_series = ImageSeries.objects.get(id=id)
     # gets the image series or sends a 404 error message if not available
     series_uid = image_series.series_uid
